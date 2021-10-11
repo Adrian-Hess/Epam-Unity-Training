@@ -3975,6 +3975,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!143 &251210919
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251210912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &251725262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1728927560801936, guid: e4dae73f74dec4f4d8d07996bfaaf449, type: 3}
@@ -16302,6 +16320,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 23bfc20cea3f80049911a1653954ce2d, type: 3}
+--- !u!20 &1073511272 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 738415572926644933, guid: 48cedc3195fbf4d478a702817915f650, type: 3}
+  m_PrefabInstance: {fileID: 7256420225579193528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1074667727 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1377120533735842, guid: a9de1dd2310f79b44b0e9bc0004649ce, type: 3}
@@ -33824,6 +33847,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 251210913, guid: 48cedc3195fbf4d478a702817915f650, type: 3}
+      propertyPath: go
+      value: 
+      objectReference: {fileID: 251210912}
+    - target: {fileID: 251210913, guid: 48cedc3195fbf4d478a702817915f650, type: 3}
+      propertyPath: goCamera
+      value: 
+      objectReference: {fileID: 1073511272}
+    - target: {fileID: 251210913, guid: 48cedc3195fbf4d478a702817915f650, type: 3}
+      propertyPath: speed_rotation
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4104839041097295004, guid: 48cedc3195fbf4d478a702817915f650, type: 3}
       propertyPath: m_TagString
       value: BulletSpawn

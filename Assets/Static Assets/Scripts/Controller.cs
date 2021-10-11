@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    /*
     [SerializeField]
     private GameObject _MainCamera;
 
@@ -49,73 +50,43 @@ public class Controller : MonoBehaviour
         {
             _player.transform.position += _player.transform.up * _jumpSpeed * Time.deltaTime;
         }
-    }
-}
+    }*/
 
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+    CharacterController controller;
 
-public class Controller : MonoBehaviour
-{
-    [SerializeField]
-    private Rigidbody _rb;
-
-    [SerializeField]
-    private float _speed = 10f;
-
-    [SerializeField]
-    private float _jumpForce = 20f;
-
-    private bool _isGrounded;
+    public float speed = 20;
+    public float speed_rotation = 10;
+    public GameObject go;
+    public float sensitivity = 1F;
+    public Camera goCamera;
+    private Vector3 MousePos;
+    private float MyAngle = 0F;
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        go = goCamera.transform.parent.gameObject;
+        controller = GetComponent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        MovementLogic();
-        JumpLogic();
+        MousePos = Input.mousePosition;
+        transform.Rotate(0, Input.GetAxis("Horizontal") * speed_rotation, 0);
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        float current_speed = speed * Input.GetAxis("Vertical");
+        controller.SimpleMove(forward * current_speed);
     }
 
-    private void MovementLogic()
+    void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        var testMovement = movement * _speed;
-        Debug.Log(testMovement);
-        _rb.AddForce(movement * _speed);
-    }
-
-    private void JumpLogic()
-    {
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetMouseButton(1))
         {
-            if (_isGrounded)
-            {
-                _rb.AddForce(Vector3.up * _jumpForce);
-            }
+            MyAngle = 0;
+            MyAngle = sensitivity * ((MousePos.x - (Screen.width / 2)) / Screen.width);
+            goCamera.transform.RotateAround(go.transform.position, goCamera.transform.up, MyAngle);
+            MyAngle = sensitivity * ((MousePos.y - (Screen.height / 2)) / Screen.height);
+            goCamera.transform.RotateAround(go.transform.position, goCamera.transform.right, -MyAngle);
         }
     }
+}
 
-    void OnCollisionEnter(Collision collision)
-    {
-        IsGroundedUpdate(collision, true);
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        IsGroundedUpdate(collision, true);
-    }
-    private void IsGroundedUpdate(Collision collision, bool value)
-    {
-        if (collision.gameObject.tag == ("Ground"))
-        {
-            _isGrounded = value;
-        }
-    }
-}*/
